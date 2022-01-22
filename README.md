@@ -45,6 +45,30 @@ include ':app', ':gmailbackgroundlibrary'
 -keep class java.beans.** { *; }
 -dontwarn java.beans.**
 ```
+# Example Usages
+```kotlin
+        BackgroundMail.newBuilder(this)
+                .setUsername("username@gmail.com")
+                .setPassword("password12345")
+                .setSenderName("SenderName")
+                .setMailTo("testemail@gmail.com")
+                .setMailCc("john.doe@gmail.com, jane.doe@gmail.com")
+                .setSubject("this is the subject")
+                .setBody("this is the body")
+                .OnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
+                    @Override
+                    public void onSuccess() {
+                        //do some magic
+                    }
+                })
+                .OnFailCallback(new BackgroundMail.OnFailCallback() {
+                    @Override
+                    public void onFail() {
+                        //do some magic
+                    }
+                })
+                .send();
+```
 # Method Functions
 
 | Functions | Description |
