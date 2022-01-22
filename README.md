@@ -45,28 +45,28 @@ include ':app', ':gmailbackgroundlibrary'
 -keep class java.beans.** { *; }
 -dontwarn java.beans.**
 ```
-# Usages
+# Method Functions
 
-```kotlin
-        BackgroundMail.newBuilder(this)
-                .setUsername("username@gmail.com")
-                .setPassword("password12345")
-                .setSenderName("SenderName")
-                .setMailTo("testemail@gmail.com")
-                .setMailCc("john.doe@gmail.com, jane.doe@gmail.com")
-                .setSubject("this is the subject")
-                .setBody("this is the body")
-                .OnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
-                    @Override
-                    public void onSuccess() {
-                        //do some magic
-                    }
-                })
-                .OnFailCallback(new BackgroundMail.OnFailCallback() {
-                    @Override
-                    public void onFail() {
-                        //do some magic
-                    }
-                })
-                .send();
-```
+| Functions | Description |
+| --- | --- |
+| `setUsername` | Set Sender Username (@String/int) |
+| `setPassword` | Set Sender Password (@String/int) |
+| `setSenderName` | Set Sender Name (@String) |
+| `setMailTo` | Set Mail to specific Email Address (@String/int) |
+| `setMailCc` | Set Mail CC (@String/int) |
+| `setMailBcc` | Set Mail BCC (@String/int) |
+| `setSubject` | Set Mail Subjects (@String/int) |
+| `setBody`  | Set Mail Body (@String/int) |
+| `setType`  | Set Email Type can be Plain or HTML Style (@String/int) |
+| `setAttachments`  | Set Email Type can be Plain or HTML Style (@Arraylist/String)|
+| `setSendingMessage`  | Set Mail Sending Message (@String/int)|
+
+# Functions Callbacks
+
+| Callbacks | Description |
+| --- | --- |
+| `OnSendingMessageSuccess` | If setSendingMessage was Success sent |
+| `OnSendingMessageError` | If setSendingMessage was Failed or Something went wrong |
+| `setProcessVisibility` | Set Process (true/false) |
+| `OnSuccessCallback` | If Mail was Succesfully Sent to MailTo |
+| `OnFailCallback` | If Mail was Failed to sent |
