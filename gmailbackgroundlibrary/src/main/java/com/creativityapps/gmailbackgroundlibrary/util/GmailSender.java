@@ -24,7 +24,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class GmailSender extends javax.mail.Authenticator {
-    private final String GMAIL_HOST = "smtp.gmail.com";
+    private String HOST = "smtp.gmail.com";
+    private String PORT = "465";
     private String user;
     private String password;
     private Session session;
@@ -40,11 +41,11 @@ public class GmailSender extends javax.mail.Authenticator {
 
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.host", GMAIL_HOST);
-        props.put("mail.smtp.ssl.trust", GMAIL_HOST);
+        props.setProperty("mail.host", HOST);
+        props.put("mail.smtp.ssl.trust", HOST);
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.port", PORT);
+        props.put("mail.smtp.socketFactory.port", PORT);
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
 
@@ -130,7 +131,23 @@ public class GmailSender extends javax.mail.Authenticator {
         public void setType(String type) {
             this.type = type;
         }
-
+        
+        /**
+        *
+        * @param host HOST that will be used on connecting SMTP; defaults to "smtp.gmail.com"
+        */
+        public void setHost(String host) {
+            this.HOST = host;
+        }
+        
+        /**
+        *
+        * @param port PORT that will be used on connecting SMTP; defaults to "465"
+        */
+        public void setPort(String port) {
+            this.PORT = port;
+        }
+        
         public String getContentType() {
             return type != null ? type : "application/octet-stream";
         }
