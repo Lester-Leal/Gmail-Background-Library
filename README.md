@@ -1,54 +1,39 @@
-# GmailBackground
-a small library to send a email in background withou user interaction 
-```java
-        BackgroundMail.newBuilder(this)
-                .withUsername("username@gmail.com")
-                .withPassword("password12345")
-                .withMailto("toemail@gmail.com")
-                .withType(BackgroundMail.TYPE_PLAIN)
-                .withSubject("this is the subject")
-                .withBody("this is the body")
-                .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
-                    @Override
-                    public void onSuccess() {
-                        //do some magic
-                    }
-                })
-                .withOnFailCallback(new BackgroundMail.OnFailCallback() {
-                    @Override
-                    public void onFail() {
-                        //do some magic
-                    }
-                })
-                .send();
-```
-**Gradle via jitpack**
+# Gmail Background Library for Android Studio
+a small library to send a email in background without user interaction.
 
+This Library was originally made by **Yesid Lazaro** <a href="https://github.com/yesidlazaro/GmailBackground">LINK</a>
+
+<p>Under Licensed to <b>the Apache Software Foundation (ASF)</b> <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p> 
+
+# Guidlines Installations
+
+<b>Project - build.gradle(app)</b>
+<p>For External Use <b>implementation project</b></p>
+
+```kotlin
+dependencies {
+    implementation project(':gmailbackgroundlibrary')
+}
+```
+<b>Project - settings.gradle</b>
+```kotlin
+include ':app', ':gmailbackgroundlibrary'
+```
+**Gradle via Jetpack**
 ```groovy
  repositories {
-        // ...
         maven { url "https://jitpack.io" }
  }
 ```
-```groovy
- dependencies {
-	        compile 'com.github.yesidlazaro:GmailBackground:1.1'
-	}
-```
-
-**Permissions**
+**AndroidManifist (Android Permissions)**
 ```xml
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
-**attachments**
-
- for attachments you need set READ_EXTERNAL_STORAGE permission in your manifiest 
+ To able to use attachment you need set READ_EXTERNAL_STORAGE permission in your manifiest
  ```xml
  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 ```
-Based on https://github.com/kristijandraca/BackgroundMailLibrary (code cleanup, tweaks, and jitpack support)
-
 **Proguard**
 ```
 -keep class org.apache.** { *; }
@@ -60,12 +45,28 @@ Based on https://github.com/kristijandraca/BackgroundMailLibrary (code cleanup, 
 -keep class java.beans.** { *; }
 -dontwarn java.beans.**
 ```
+# Usages
 
-#license
-Copyright 2015 Yesid Lazaro
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```kotlin
+        BackgroundMail.newBuilder(this)
+                .setUsername("username@gmail.com")
+                .setPassword("password12345")
+                .setSenderName("SenderName")
+                .setMailTo("testemail@gmail.com")
+                .setMailCc("john.doe@gmail.com, jane.doe@gmail.com")
+                .setSubject("this is the subject")
+                .setBody("this is the body")
+                .OnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
+                    @Override
+                    public void onSuccess() {
+                        //do some magic
+                    }
+                })
+                .OnFailCallback(new BackgroundMail.OnFailCallback() {
+                    @Override
+                    public void onFail() {
+                        //do some magic
+                    }
+                })
+                .send();
+```
